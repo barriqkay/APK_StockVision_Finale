@@ -1,5 +1,5 @@
-name: ggrm_mobile
-description: "Flutter client to call the GGRM stock prediction backend"
+name: stock_vision
+description: "Stock Vision - AI-powered stock price prediction application"
 version: 2.0.0+1
 publish_to: 'none'
 environment:

@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:451879224771:android:d220572b3af4513e716976",
         "android_client_info": {
-          "package_name": "com.example.ggrm_stock_app"
+          "package_name": "com.stockvision.app"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "451879224771-3onusd29o0k5hg3a2o8qimbtn14l70el.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.ggrm_stock_app",
+            "package_name": "com.stockvision.app",
             "certificate_hash": "8f530493437da0193b2127b50c6347ca8e6445f6"
           }
         },
@@ -25,7 +25,7 @@
           "client_id": "451879224771-8f530493437da0193b2127b50c6347ca8e6445f6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.ggrm_stock_app",
+            "package_name": "com.stockvision.app",
             "certificate_hash": "8f530493437da0193b2127b50c6347ca8e6445f6"
           }
         },
@@ -37,7 +37,7 @@
           "client_id": "451879224771-bb0dac742d21316714e71679.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.ggrm_stock_app",
+            "package_name": "com.stockvision.app",
             "certificate_hash": "BB0DAC742D21316714E71679"
           }
         },
@@ -45,7 +45,7 @@
           "client_id": "451879224771-782c5fe99949992908a45fa5b37c55218c05a013.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.ggrm_stock_app",
+            "package_name": "com.stockvision.app",
             "certificate_hash": "782C5FE99949992908A45FA5B37C55218C05A013"
           }
         }
