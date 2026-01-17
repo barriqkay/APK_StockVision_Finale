@@ -211,9 +211,4 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-        '/settings': (ctx) => SettingsScreen(),
-      },
-    );
-  }
-}
 
