@@ -1,0 +1,48 @@
+name: Build Android APK (EAS)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  eas-build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        working-directory: ./mobile_app
+        run: |
+          npm ci
+
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
+
+      - name: Login to EAS
+        env:
+          EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
+        run: |
+          eas login --token $EAS_TOKEN
+
+      - name: Run EAS build (Android)
+        working-directory: ./mobile_app
+        env:
+          EAS_NON_INTERACTIVE: 1
+        run: |
+          eas build --platform android --profile production --non-interactive
+
+      - name: Post-build note
+        run: |
+          echo "EAS build started/completed. Check the build URL in the step logs or visit https://expo.dev/accounts/your-account/projects/ggrm-mobile/builds"
+
+# Notes:
+# - This workflow requires an `EAS_TOKEN` secret (set in GitHub repository secrets).
+# - EAS will manage/build the APK on Expo servers. To download artifacts or submit to Play Store,
+#   configure `eas submit` or retrieve the artifact URL from the build output.

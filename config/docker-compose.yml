@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  ggrm-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ggrm-stock-prediction-api
+    ports:
+      - "8000:8000"
+    environment:
+      - LOG_LEVEL=INFO
+      - TICKER=GGRM.JK
+      - DATA_PERIOD=5y
+      - FIREBASE_CREDENTIALS=/run/secrets/firebase-creds.json
+    volumes:
+      - ./stock_model.keras:/app/stock_model.keras
+      - ./scaler_ggrm.pkl:/app/scaler_ggrm.pkl
+      - ./predictions:/app/predictions
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - -f
+        - http://localhost:8000/status
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    networks:
+      - ggrm-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: ggrm-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - ggrm-api
+    networks:
+      - ggrm-network
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD
+        - wget
+        - --quiet
+        - --tries=1
+        - --spider
+        - http://localhost:80/
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+networks:
+  ggrm-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
+
+secrets:
+  firebase-creds:
+    file: ./Secret/stock-prediction-realtime-firebase-adminsdk-fbsvc-6d0f85bf5b.json
+

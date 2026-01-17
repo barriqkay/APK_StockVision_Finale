@@ -1,0 +1,16 @@
+#!/bin/bash
+# Script untuk test API stock prediction
+
+cd /home/berkuiii/Documents/stock-predict-backend-main
+
+echo "=============================================="
+echo "TESTING STOCK PREDICTION BACKEND"
+echo "=============================================="
+
+# Activate virtual environment dan jalankan test
+.venv/bin/python test_api.py
+
+echo ""
+echo "=============================================="
+echo "TEST COMPLETED"
+echo "=============================================="

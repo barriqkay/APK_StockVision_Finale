@@ -1,0 +1,15 @@
+{
+  "ticker": "GGRM.JK",
+  "trained_date": "2026-01-15T16:38:43.262419",
+  "data_rows": 1189,
+  "seq_len": 60,
+  "epochs": 50,
+  "batch_size": 32,
+  "metrics": {
+    "train_loss": 455227264.0,
+    "train_mae": 20724.24609375,
+    "test_loss": 105130272.0,
+    "test_mae": 9928.54296875
+  },
+  "status": "success"
+}

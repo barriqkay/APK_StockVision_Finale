@@ -1,0 +1,42 @@
+<parameter name="content">#!/bin/bash
+
+# Build APK untuk GGRM Stock Prediction App
+# Pastikan Flutter SDK terinstall dan di PATH
+
+echo "=== GGRM Stock Prediction APK Builder ==="
+echo ""
+
+# Pindah ke folder project
+cd /home/berkuiii/Documents/stock-predict-backend-main/ggrm_stock_app
+
+# Verifikasi file pubspec.yaml ada
+if [ ! -f "pubspec.yaml" ]; then
+    echo "ERROR: pubspec.yaml tidak ditemukan di folder ggrm_stock_app"
+    exit 1
+fi
+
+echo "1. Cleaning build artifacts..."
+flutter clean
+
+echo ""
+echo "2. Getting dependencies..."
+flutter pub get
+
+echo ""
+echo "3. Running build for Android (APK)..."
+flutter build apk --release
+
+# Verifikasi APK berhasil dibuat
+if [ -f "build/app/outputs/flutter-apk/app-release.apk" ]; then
+    echo ""
+    echo "=== BUILD SUCCESS ==="
+    echo "APK Location: build/app/outputs/flutter-apk/app-release.apk"
+    echo ""
+    echo "File size:"
+    ls -lh build/app/outputs/flutter-apk/app-release.apk
+else
+    echo ""
+    echo "=== BUILD FAILED ==="
+    echo "APK tidak ditemukan setelah build"
+fi
+</parameter>

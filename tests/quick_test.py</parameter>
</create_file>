@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+"""Test API backend functions"""
+import sys
+sys.path.insert(0, '/home/berkuiii/Documents/stock-predict-backend-main')
+
+from backend_api import get_status, get_latest_data, get_stock_history
+
+print("=" * 60)
+print("TESTING STOCK PREDICTION BACKEND FUNCTIONS")
+print("=" * 60)
+
+# Test 1: Status
+print("\n[1] Testing get_status()...")
+status = get_status()
+print(f"    Model: {status.get('model')}")
+print(f"    Ticker: {status.get('ticker')}")
+
+# Test 2: Latest Data
+print("\n[2] Testing get_latest_data()...")
+latest = get_latest_data('GGRM.JK')
+print(f"    Date: {latest.get('date')}")
+print(f"    Close: {latest.get('ohlcv', {}).get('close')}")
+
+# Test 3: History
+print("\n[3] Testing get_stock_history()...")
+history = get_stock_history('GGRM.JK', period='1mo')
+print(f"    Data Points: {history.get('data_points')}")
+
+print("\n" + "=" * 60)
+print("ALL TESTS COMPLETED!")
+print("=" * 60)
